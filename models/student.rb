@@ -3,7 +3,7 @@ require('pry')
 
 class Student
 
-  attr_reader( :first_name, :last_name, :house, :age, :id )
+  attr_reader( :first_name, :second_name, :house, :age, :id )
 
   def initialize( options )
     @id = nil || options['id'].to_i
@@ -30,6 +30,11 @@ class Student
     sql = "SELECT * FROM students WHERE id = #{id}; "
     student = SqlRunner.run(sql)[0]
     return Student.new( student )
+  end
+
+  def self.delete(id)
+      sql = "DELETE FROM students WHERE id=id"
+      SqlRunner.run( sql )
   end  
 
 end
